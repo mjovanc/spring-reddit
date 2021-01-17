@@ -1,4 +1,4 @@
-package com.mjovanc.reddit;
+package com.mjovanc.reddit.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

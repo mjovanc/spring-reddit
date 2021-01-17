@@ -1,15 +1,18 @@
-package com.mjovanc.reddit;
+package com.mjovanc.reddit.controller;
 
+import com.mjovanc.reddit.model.User;
+import com.mjovanc.reddit.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("user")
 public class RedditController {
 
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/add")
+    @PostMapping("add")
     public String addUser(@RequestParam String first, @RequestParam String last) {
         User user = new User();
         user.setFirstName(first);
@@ -18,13 +21,13 @@ public class RedditController {
         return "A new user has been added to the repo!";
     }
 
-    @GetMapping("/list")
+    @GetMapping("list")
     public Iterable<User> getUsers() {
-        return userRepository.findAll();
+        return this.userRepository.findAll();
     }
 
-    @GetMapping("/find/{id}")
-    public User findUserById(@PathVariable Integer id) {
-        return userRepository.findUserById(id);
+    @GetMapping("{id}")
+    public User getUserById(@PathVariable Integer id) {
+        return this.userRepository.findUserById(id);
     }
  }
