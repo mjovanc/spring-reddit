@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  .row
+    .col-8.mb-3
+      .post-div
+        form(action="/post/add", method="POST")
+          .mb-3
+            label(for="exampleFormControlTextarea1").form-label Add new post
+            textarea(name="bodyContent", rows="5", id="exampleFormControlTextarea1").form-control.mb-2
+            
+            // https://stackoverflow.com/questions/5710358/how-to-access-post-form-fields fix this later
+            label(for="formGroupExampleInput") Subreddit
+            input(name="subreddit", type="text", id="formGroupExampleInput", placeholder="Subreddit").form-control Subreddit
+          button(type="submit").btn.btn-primary Add
+    .col-4.mb-3
+      .sidebar-div  
+        h4 Top new subreddits
+        ul.list-group.list-group-flush
+          li.list-group-item 1. Test
+          li.list-group-item 2. Test
+          li.list-group-item 3. Test
+  
+
+  .row
+    each post in posts
+      .col-8.mb-3
+        .post-div
+          small=post.subreddit
+          h4 A test heading
+          p=post.body
+
+
